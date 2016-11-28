@@ -164,6 +164,24 @@ class ChatMessageEvent(ConversationEvent):
         return attachments
 
 
+class OTREvent(ConversationEvent):
+
+    """An event that changes OTR mode.
+
+    Corresponds to hangouts_pb2.OTRModification.
+    """
+
+    @property
+    def new_otr_status(self):
+        """The conversation's old OTR status."""
+        return self._event.otr_modification.new_otr_status
+
+    @property
+    def old_otr_status(self):
+        """The conversation's old OTR status."""
+        return self._event.otr_modification.old_otr_status
+
+
 class RenameEvent(ConversationEvent):
 
     """An event that renames a conversation.
@@ -221,3 +239,16 @@ class HangoutEvent(ConversationEvent):
     def event_type(self):
         """The Hangout event type (HangoutEventType)."""
         return self._event.hangout_event.event_type
+
+
+class GroupLinkSharingModificationEvent(ConversationEvent):
+
+    """An event that modifies a conversation's group link sharing status.
+
+    Corresponds to hangouts_pb2.GroupLinkSharingModification.
+    """
+
+    @property
+    def new_status(self):
+        """The new group link sharing status (GroupLinkSharingStatus)."""
+        return self._event.group_link_sharing_modification.new_status

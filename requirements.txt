@@ -3,3 +3,4 @@ purplex
 protobuf==3.0.0a3
 reparser
 requests
+mechanicalsoup
